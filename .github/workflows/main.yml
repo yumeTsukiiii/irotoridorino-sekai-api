@@ -54,3 +54,15 @@ jobs:
           source: "build/install/fan.yumetsuki.irotoridorino-sekai-api"
           target: "~/applications/blog.yumetsuki.fan"
           overwrite: true
+
+      - name: copy build dir
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          port: ${{ secrets.PORT }}
+          script: |
+            cd ~/applications/blog.yumetsuki.fan/build/install
+            cp -r fan.yumetsuki.irotoridorino-sekai-api ../..
+            rm -rf build

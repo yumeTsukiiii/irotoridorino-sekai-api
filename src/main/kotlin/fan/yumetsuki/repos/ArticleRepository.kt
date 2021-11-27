@@ -11,6 +11,7 @@ import kotlinx.coroutines.coroutineScope
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
 import java.io.File
+import kotlin.math.ceil
 
 interface ArticleRepository {
     suspend fun getArticlePaged(page: Int? = null, pageSize: Int? = null): List<Article>
@@ -89,11 +90,7 @@ class FileArticleRepository(
         return pageSize?.takeIf {
             it > 0
         }?.let {
-            size / it
-        }?.takeIf {
-            page != null
-        }?.let {
-            it * pageSize
+            (page ?: 0) * pageSize
         }?.takeIf {
             it > 0
         }?.let {
