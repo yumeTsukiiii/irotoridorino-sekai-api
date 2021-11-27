@@ -25,9 +25,9 @@ jobs:
         with:
           java-version: '11'
           distribution: 'adopt'
-          
+
       - name: Build with Gradle
-        run: ./gradlew installDist
+        run: chmod +x gradlew && ./gradlew installDist
         
       - name: rm old build dir
         uses: appleboy/ssh-action@master
