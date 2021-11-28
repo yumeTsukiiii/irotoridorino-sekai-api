@@ -87,6 +87,7 @@ jobs:
           password: ${{ secrets.PASSWORD }}
           port: ${{ secrets.PORT }}
           script: |
+            cd ~/applications/blog.yumetsuki.fan
             chmod +x startup.sh
             ./startup.sh
 
