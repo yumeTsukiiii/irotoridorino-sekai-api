@@ -65,4 +65,5 @@ jobs:
           script: |
             cd ~/applications/blog.yumetsuki.fan/build/install
             cp -r fan.yumetsuki.irotoridorino-sekai-api ../..
+            cd ../..
             rm -rf build
