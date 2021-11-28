@@ -54,11 +54,9 @@ class FileArticleRepository(
         dir.listFiles { _, name ->
             name.endsWith(".json")
                 && name.matches(Regex(".+-.+"))
-                && name.removeSuffix(".json").split("-").takeIf {
-                    it.size == 2
-                }?.let {
-                    it[1].toIntOrNull()
-                }?.let { id -> id == articleId } ?: false
+                && name.removeSuffix(".json").split("-")
+                    .lastOrNull()?.toIntOrNull()
+                        ?.let { id -> id == articleId } ?: false
         }.firstOrNull()?.readTextAsync()?.await()?.let {
             Json.decodeFromString<List<ArticleContent>>(it)
         }?.map {
